@@ -1,0 +1,54 @@
+package multimediaproject;
+
+import java.util.Scanner;
+
+// كلاس الأب (MediaFile)
+class MediaFile {
+    protected String fileName;
+    protected double fileSize;
+
+    public void upload() {
+        System.out.println(">>> [SYSTEM]: Jari raf' al-malaf: " + fileName + " (" + fileSize + " MB)...");
+        System.out.println(">>> [SUCCESS]: Tam raf' al-malaf binajah!");
+    }
+}
+
+// كلاس الابن (Video) مع الوراثة
+class Video extends MediaFile {
+    private int duration;
+
+    public Video(String name, double size, int duration) {
+        this.fileName = name;
+        this.fileSize = size;
+        this.duration = duration;
+    }
+
+    public void trim() {
+        System.out.println(">>> [EDIT]: Jari qass al-video: " + fileName);
+        System.out.println(">>> [INFO]: Al-mudda al-asliya: " + duration + " seconds.");
+    }
+}
+
+// الكلاس الأساسي المطابق لاسم الملف
+public class MultimediaProject {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("=== Multimedia System - Apache NetBeans ===");
+        System.out.print("Enter Video Name: ");
+        String name = input.nextLine();
+        
+        System.out.print("Enter File Size (MB): ");
+        double size = input.nextDouble();
+        
+        System.out.print("Enter Duration (seconds): ");
+        int duration = input.nextInt();
+
+        Video myVideo = new Video(name, size, duration);
+        
+        System.out.println("\n--- Execution Start ---");
+        myVideo.upload(); 
+        myVideo.trim();   
+        System.out.println("--- Execution End ---");
+    }
+}
